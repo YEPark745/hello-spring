@@ -9,12 +9,14 @@ import org.springframework.test.web.reactive.server.JsonPathAssertions;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 
 
 class MemoryMemberRepositoryTest {
     MemoryMemberRepository repository = new MemoryMemberRepository();
+
+
     @AfterEach
     public void afterEach() {
         repository.clearStore();
@@ -29,7 +31,7 @@ class MemoryMemberRepositoryTest {
         repository.save(member);
         //then
         Member result = repository.findById(member.getId()).get();
-        Assertions.assertThat(result).isEqualTo(member);
+        assertThat(result).isEqualTo(member);
     }
 
 
@@ -45,7 +47,7 @@ class MemoryMemberRepositoryTest {
         //when
         Member result = repository.findByName("spring1").get();
         //then
-        Assertions.assertThat(result).isEqualTo(member1);
+        assertThat(result).isEqualTo(member1);
     }
     @Test
     public void findAll() {
